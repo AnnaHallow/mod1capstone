@@ -1,5 +1,5 @@
 package com.techelevator.Model;
 
-public class Log {
+public class SalesReport {
 
 }

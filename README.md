@@ -99,14 +99,14 @@ For example:
 A1|Potato Crisps|3.05|Chip
 B1|Moonpie|1.80|Candy
 B2|Cowtales|1.50|Candy
-C1|Cola|1.25|Drink
+C1|Cola|1.25|Drinhe output sales k
 ```
 
 **An input file is in your repository: `vendingmachine.csv`.**
 
  ---
 ### Sales report
-The output sales report file is also pipe-delimited for consistency. Each line is a separate product with the number of sales for the applicable product. At the end of the report is a blank line followed by the **TOTAL SALES** dollar amount indicating the gross sales from the vending machine.
+Treport file is also pipe-delimited for consistency. Each line is a separate product with the number of sales for the applicable product. At the end of the report is a blank line followed by the **TOTAL SALES** dollar amount indicating the gross sales from the vending machine.
 
 For example:
 
