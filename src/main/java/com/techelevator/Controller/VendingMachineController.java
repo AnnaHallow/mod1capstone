@@ -2,6 +2,7 @@ package com.techelevator.Controller;
 
 import com.techelevator.Model.Inventory;
 import com.techelevator.Model.Product;
+import com.techelevator.Model.Transaction;
 
 /**
  * <h1>Controller</h1>
@@ -42,9 +43,16 @@ public class VendingMachineController {
                 System.out.printf("%-10s %-20s $%-10.2f %-10s %d\n", item.getItemSlot(), item.getItemName(), item.getItemPrice(), item.getItemType(), item.getItemQuantity());
             }
 
-
         }
     }
+
+
+
+    public static void generateSalesReport(){
+
+    }
+
+
 
 
 }
