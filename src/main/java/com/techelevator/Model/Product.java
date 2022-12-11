@@ -1,10 +1,5 @@
 package com.techelevator.Model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * <h1>Product</h1>
@@ -38,39 +33,39 @@ public class Product {
         return itemSlot;
     }
 
-    public void setItemSlot(String itemSlot) {
-        this.itemSlot = itemSlot;
-    }
 
     public String getItemName() {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
 
     public Double getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(Double itemPrice) {
-        this.itemPrice = itemPrice;
-    }
 
     public String getItemType() {
         return itemType;
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
-    }
 
     public int getItemQuantity() {
         return itemQuantity;
     }
 
-    public void setItemQuantity(int itemQuantity) {
-        this.itemQuantity = itemQuantity;
+    public void removeOneItem() {
+
+        if(!isOutOfStock()){
+            this.itemQuantity -= 1;
+        }
+
+    }
+
+
+    public boolean isOutOfStock(){
+        if(this.getItemQuantity() == 0){
+            return true;
+        }
+        return false;
     }
 }

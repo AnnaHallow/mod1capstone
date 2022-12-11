@@ -17,6 +17,8 @@ import com.techelevator.Model.Product;
  */
 
 public class VendingMachineController {
+    // Instance of Inventory
+    private static Inventory vendingInventory = Inventory.getInventoryInstance();
 
     /**
      * This method is used to display every
@@ -25,10 +27,22 @@ public class VendingMachineController {
      *
      */
     public static void displayInventory(){
-        Inventory vendingInventory = Inventory.getInventoryInstance();
+        System.out.println();
+        System.out.printf("%-10s %-20s %-10s %-10s %s\n", "Slot", "Product Name", "Price", "Type", "Quantity");
+        System.out.println("_______________________________________________________________");
+        System.out.println();
+
 
         for(Product item: vendingInventory.getInventory()){
-            System.out.println(item.getItemSlot() + " " + item.getItemName() + " $" + item.getItemPrice() + " " + item.getItemType() );
+
+            // tests if Item is sold out or not
+            if(item.isOutOfStock()){
+                System.out.printf("%-10s %-20s $%-10.2f %-10s %s\n", item.getItemSlot(), item.getItemName(), item.getItemPrice(), item.getItemType(), "Sold Out");
+            }else{
+                System.out.printf("%-10s %-20s $%-10.2f %-10s %d\n", item.getItemSlot(), item.getItemName(), item.getItemPrice(), item.getItemType(), item.getItemQuantity());
+            }
+
+
         }
     }
 
