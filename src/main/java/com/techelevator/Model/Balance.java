@@ -2,31 +2,31 @@ package com.techelevator.Model;
 
 
 /**
- * <h1>Transaction</h1>
+ * <h1>Balance</h1>
  * This class handle the balance of the vending machine
  *
  * <p>
  * <b>Note:</b> to create an instance of this class write
- * Transaction newTransaction = Transaction.getInstance();
+ * Balance newBalance = Balance.getInstance();
  *
  * @author
  * @version 1.0
  * @since   2022-12-10
  */
-public class Transaction {
+public class Balance {
 
     private double balance;
 
-    private static Transaction firstInstance = null;
+    private static Balance firstInstance = null;
 
-    private Transaction(){
+    private Balance(){
 
     }
 
     // makes only one instance of the class
-    public static Transaction getTransactionInstance(){
+    public static Balance getBalanceInstance(){
         if(firstInstance == null){
-            firstInstance = new Transaction();
+            firstInstance = new Balance();
         }
         return firstInstance;
     }
@@ -39,7 +39,12 @@ public class Transaction {
         return 0;
     }
 
+
     public void subtractFromBalance(){
+
+    }
+
+    public void getChange(){
 
     }
 

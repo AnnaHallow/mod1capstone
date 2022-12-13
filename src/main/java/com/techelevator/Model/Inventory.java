@@ -1,5 +1,7 @@
 package com.techelevator.Model;
 
+import com.techelevator.Exceptions.ProductNotFoundException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import java.util.Scanner;
  * @since   2022-12-10
  */
 public class Inventory {
+    private static final String FILE_NAME = "vendingmachine.csv";
     private List<Product> inventory;
     private static Inventory firstInstance = null;
 
@@ -49,7 +52,7 @@ public class Inventory {
         List<Product> inventory = new ArrayList<Product>();
 
         // Reading inventory from file
-        File inventoryFile = new File("vendingmachine.csv");
+        File inventoryFile = new File(FILE_NAME);
         try(Scanner inventoryScanner = new Scanner(inventoryFile)){
             while(inventoryScanner.hasNextLine()){
                 String[] inventoryArray = inventoryScanner.nextLine().split("\\|");
@@ -70,15 +73,15 @@ public class Inventory {
      * inventory for a product at a certain slot in the
      * vending machine.
      * @param slotLocation this is the slot that will be searched for a product
-     * @return Product from the slot and null if no slot was found
+     * @return Product from the slot or throw ProductNotFoundException if no slot was found
      */
-    public Product searchInventory(String slotLocation){
+    public Product searchInventory(String slotLocation) throws ProductNotFoundException {
         for(Product item: this.getInventory()){
             if(item.getItemSlot().equals(slotLocation)){
                 return item;
             }
         }
-        return null;
+        throw new ProductNotFoundException("Product does not exist");
     }
 
     public List<Product> getInventory(){

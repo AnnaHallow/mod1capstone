@@ -1,14 +1,14 @@
 package com.techelevator.Controller;
 
 import com.techelevator.Model.Inventory;
-import com.techelevator.Model.Transaction;
+import com.techelevator.Model.Balance;
 
 public class TransactionController {
-    public static Transaction vendingTransaction = Transaction.getTransactionInstance();
+    public static Balance vendingBalance = Balance.getBalanceInstance();
     public static Inventory vendingInventory = Inventory.getInventoryInstance();
 
     public static void displayCurrentBalance(){
-        System.out.printf("Current Money Provided: $%.2f\n", vendingTransaction.getBalance());
+        System.out.printf("Current Money Provided: $%.2f\n", vendingBalance.getBalance());
     }
 
     public static void feedMoney(){

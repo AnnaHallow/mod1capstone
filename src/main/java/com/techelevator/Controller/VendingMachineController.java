@@ -2,7 +2,7 @@ package com.techelevator.Controller;
 
 import com.techelevator.Model.Inventory;
 import com.techelevator.Model.Product;
-import com.techelevator.Model.Transaction;
+import com.techelevator.Model.Balance;
 
 /**
  * <h1>Controller</h1>
