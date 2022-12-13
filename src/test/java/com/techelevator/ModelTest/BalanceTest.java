@@ -1,4 +1,4 @@
 package com.techelevator.ModelTest;
 
-public class TransactionTest {
+public class BalanceTest {
 }
