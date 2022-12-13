@@ -3,12 +3,15 @@ package com.techelevator.view;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
 	private PrintWriter out;
 	private Scanner in;
+	private List<String> secretMenu = new ArrayList<String>();
 
 
 	public Menu(InputStream input, OutputStream output) {
@@ -20,6 +23,7 @@ public class Menu {
 		Object choice = null;
 		while (choice == null) {
 			displayMenuOptions(options);
+			options = combineWithSecretMenu(options);
 			choice = getChoiceFromUserInput(options);
 		}
 		return choice;
@@ -51,6 +55,22 @@ public class Menu {
 		}
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
+	}
+
+	private Object[] combineWithSecretMenu(Object[] options){
+		Object[] newOptions = new Object[(options.length + secretMenu.size())];
+
+		for(int i = 0; i < options.length; i++){
+			newOptions[i] = options[i];
+		}
+		for(int j = options.length, k = 0; j < newOptions.length; j++, k++){
+			newOptions[j] = secretMenu.get(k);
+		}
+		return newOptions;
+	}
+
+	public void addSecretMenuItem(String menuItem){
+		secretMenu.add(menuItem);
 	}
 
 

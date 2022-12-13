@@ -10,6 +10,7 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_CLOSE = "Close";
+	private static final String MAIN_MENU_SALES_REPORT = "Sales Report";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_CLOSE};
 	// Purchase Product Options
 	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
@@ -25,6 +26,7 @@ public class VendingMachineCLI {
 
 	public void run() {
 		while (true) {
+			menu.addSecretMenuItem(MAIN_MENU_SALES_REPORT); // add secret menu Item
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
@@ -32,11 +34,15 @@ public class VendingMachineCLI {
 				VendingMachineController.displayInventory();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
-				purchaseMenuSelection(menu);
+				Menu purchaseMenu = new Menu(System.in, System.out);
+				purchaseMenuSelection(purchaseMenu);
 
 			} else if(choice.equals(MAIN_MENU_CLOSE)){
 				// close program
 				System.exit(0);
+			} else if(choice.equals(MAIN_MENU_SALES_REPORT)){
+				// display Sales report
+
 			}
 		}
 	}
@@ -66,8 +72,8 @@ public class VendingMachineCLI {
 
 	public static void main(String[] args) {
 
-		Menu menu = new Menu(System.in, System.out);
-		VendingMachineCLI cli = new VendingMachineCLI(menu);
+		Menu mainMenu = new Menu(System.in, System.out);
+		VendingMachineCLI cli = new VendingMachineCLI(mainMenu);
 		cli.run();
 	}
 }

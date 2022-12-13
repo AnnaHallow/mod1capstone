@@ -48,7 +48,7 @@ public class VendingMachineController {
 
 
 
-    public static void generateSalesReport(){
+    public static void displaySalesReport(){
 
     }
 
