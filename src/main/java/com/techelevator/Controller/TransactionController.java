@@ -1,5 +1,6 @@
 package com.techelevator.Controller;
 
+import com.techelevator.Exceptions.ProductNotFoundException;
 import com.techelevator.Model.Inventory;
 import com.techelevator.Model.Balance;
 

@@ -36,7 +36,7 @@ public class Balance {
 
     public double getBalance(){
 
-        return 0;
+        return this.balance;
     }
 
 

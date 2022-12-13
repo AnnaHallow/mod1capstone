@@ -23,8 +23,8 @@ public class Menu {
 		Object choice = null;
 		while (choice == null) {
 			displayMenuOptions(options);
-			options = combineWithSecretMenu(options);
-			choice = getChoiceFromUserInput(options);
+			Object[] optionUpdated = combineWithSecretMenu(options);
+			choice = getChoiceFromUserInput(optionUpdated);
 		}
 		return choice;
 	}
