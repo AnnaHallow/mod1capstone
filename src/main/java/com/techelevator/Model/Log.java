@@ -7,7 +7,6 @@ import java.time.LocalTime;
 
 public class Log {
 
-
     public static void log(String operation, double amount, double balance) {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
