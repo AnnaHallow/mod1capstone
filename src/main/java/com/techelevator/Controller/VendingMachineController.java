@@ -29,7 +29,7 @@ public class VendingMachineController {
      */
     public static void displayInventory(){
         System.out.println();
-        System.out.printf("%-10s %-20s %-10s %-10s %s\n", "Slot", "Product Name", "Price", "Type", "Quantity");
+        System.out.printf("%-10s %-20s %-11s %-10s %s\n", "Slot", "Product Name", "Price", "Type", "Quantity");
         System.out.println("_______________________________________________________________");
         System.out.println();
 

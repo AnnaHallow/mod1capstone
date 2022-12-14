@@ -21,6 +21,7 @@ public class Product {
     private Double itemPrice;
     private String itemType;
     private int itemQuantity = 5; // default quantity for all items is 5
+    private int itemsSold = 0; //starts at zero items sold
 
     public Product(String itemSlot, String itemName, Double itemPrice, String itemType) {
         this.itemSlot = itemSlot;
@@ -53,10 +54,13 @@ public class Product {
         return itemQuantity;
     }
 
+    public int getItemsSold(){ return itemsSold;}
+
     public void removeOneItem() {
 
         if(!isOutOfStock()){
             this.itemQuantity -= 1;
+            this.itemsSold += 1;
         }
 
     }
