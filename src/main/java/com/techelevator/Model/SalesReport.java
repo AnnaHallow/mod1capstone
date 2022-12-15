@@ -11,13 +11,6 @@ public class SalesReport {
     private Map<String, Integer> quantitySold = new HashMap<String, Integer>();
     private double salesTotal = 0;//
 
-    public SalesReport(){
-        generateSalesReport();
-
-        //write to a file
-
-
-    }
 
     public double getSalesTotal(){
         return this.salesTotal;
@@ -27,9 +20,19 @@ public class SalesReport {
     public void writeReport() {
         try {
             PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReport.txt");
+            Inventory vendingInventory = Inventory.getInventoryInstance();
 
-            //write data to the file
-            transactions.println();
+            //generate report to write to file
+
+            for(Product item: vendingInventory.getInventory()) {
+                quantitySold.put(item.getItemName(), item.getItemsSold());
+                this.salesTotal += item.getItemsSold() * item.getItemPrice();
+
+                //write data to the file
+
+                transactions.println(quantitySold);
+            }
+            transactions.println(salesTotal);
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }
@@ -50,13 +53,5 @@ public class SalesReport {
 
     }
 
-    private void generateSalesReport(){
-        Inventory vendingInventory = Inventory.getInventoryInstance();
 
-        for(Product item: vendingInventory.getInventory()){
-            quantitySold.put(item.getItemName(), item.getItemsSold());
-            this.salesTotal += item.getItemsSold() * item.getItemPrice();
-        }
-
-    }
 }
