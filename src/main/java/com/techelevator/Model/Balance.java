@@ -15,7 +15,7 @@ package com.techelevator.Model;
  */
 public class Balance {
 
-    private double balance;
+    private double balance = 0;// default 0 dollars
 
     private static Balance firstInstance = null;
 
@@ -30,9 +30,9 @@ public class Balance {
         }
         return firstInstance;
     }
-    public double depositMoney(double cash){
-        cash += balance;
-        return balance;
+    public void depositMoney(double cash){
+
+        this.balance += cash;
 
     }
 
@@ -42,13 +42,15 @@ public class Balance {
     }
 
 
-    public double subtractFromBalance(double cash){
-        balance -= cash;
-        return balance;
+    public void subtractFromBalance(double cash){
+        this.balance -= cash;
+
     }
 
     public double getChange(){
-        return balance;
+        double changeBalance = this.balance;
+        this.balance = 0;
+        return changeBalance;
     }
 
 

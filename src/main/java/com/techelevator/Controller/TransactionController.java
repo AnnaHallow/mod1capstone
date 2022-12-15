@@ -19,26 +19,30 @@ public class TransactionController {
     public static void feedMoney(){
         Scanner scan = new Scanner(System.in);
         boolean stillAdding = true;
-        System.out.println("Enter deposit: ");
-         double tempCash = 0.0;
-        tempCash += scan.nextDouble();
 
-        while(stillAdding){
+        do {
+            System.out.println("Enter deposit: ");
+            double tempCash = 0.0;
+            tempCash += scan.nextDouble();
+            vendingBalance.depositMoney(tempCash);
+
+
             System.out.println("Add additional tender? Y/N");
             TransactionController.displayCurrentBalance();
             String choice = scan.next();
-            if(choice.equalsIgnoreCase("y")){
-                tempCash += scan.nextDouble();
+            if (choice.equalsIgnoreCase("y")) {
 
-            }else if(choice.equalsIgnoreCase("n")){
+
+            } else if (choice.equalsIgnoreCase("n")) {
                 System.out.println("You have added $" + tempCash);
-                System.out.println("Current balance is: $" + (TransactionController.vendingBalance.getBalance()) + tempCash);
+                System.out.println("Current balance is: $" + (vendingBalance.getBalance()));
                 stillAdding = false;
 
-            }else {
+            } else {
                 System.out.println("Invalid selection");
             }
-        }
+
+        }while(stillAdding);
 
     }
 
@@ -49,27 +53,36 @@ public class TransactionController {
         } else {
             System.out.println("Enter item location: ");
             String slotLocation = scan.nextLine();
-            Product newProduct;
+
 
             try {
-                newProduct = vendingInventory.searchInventory(slotLocation);
+                Product newProduct = vendingInventory.searchInventory(slotLocation);
+
+                //Product newProduct = vendingInventory.searchInventory(slotLocation);
+
+
+                if (vendingBalance.getBalance() < newProduct.getItemPrice()) {
+                    System.out.println("Please submit additional tender. Product Price: $" + newProduct.getItemPrice());
+                    TransactionController.feedMoney();
+                } else {
+                    try {
+
+                        newProduct.removeOneItem();
+                        vendingBalance.subtractFromBalance(newProduct.getItemPrice());
+                        //print out sounds
+                        noiseMaker();
+
+                    }catch(ProductSoldOutException e){
+                        System.out.println("Item is out of stock");
+                    }
+                }
             } catch (ProductNotFoundException e) {
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e)
+                System.out.println("Product not found");
             }
 
             //Product newProduct = vendingInventory.searchInventory(slotLocation);
 
-
-            if (vendingBalance.getBalance() < newProduct.getItemPrice()) {
-                System.out.println("Please submit additional tender. Product Price: $" + newProduct.getItemPrice());
-                TransactionController.feedMoney();
-            } else {
-                try {
-                    newProduct.removeOneItem();
-                }catch(ProductSoldOutException e){
-                    System.out.println("Item is out of stock");
-                }
-            }
         }
 
 
@@ -84,7 +97,7 @@ public class TransactionController {
     public static void finishTransaction(){
         System.out.println("Thank you!");
         if (vendingBalance.getBalance() > 0){
-            System.out.println("Dispensing Change: $" + vendingBalance.getBalance());
+            System.out.println("Dispensing Change: $" + vendingBalance.getChange());
             System.out.println("Have a great day!");
         }
     }

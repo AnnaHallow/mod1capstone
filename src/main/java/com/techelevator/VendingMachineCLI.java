@@ -58,14 +58,14 @@ public class VendingMachineCLI {
 
 			if(choice.equals(PURCHASE_MENU_FEED_MONEY)){
 				// Feed money
-
-
+				TransactionController.feedMoney();
 			}else if(choice.equals(PURCHASE_MENU_SELECT_PRODUCT)){
 				// Select Product
  				TransactionController.purchaseProduct();
 
 			}else if(choice.equals(PURCHASE_MENU_FINISH_TRANSACTION)){
 				// Finish transaction
+				TransactionController.finishTransaction();
 
 				isTransactionComplete = true;
 			}
