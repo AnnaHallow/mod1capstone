@@ -32,7 +32,7 @@ public class SalesReport {
 
                 transactions.println(quantitySold);
             }
-            transactions.println("**SALES TOTAL** $" + salesTotal);
+            transactions.println("**SALES TOTAL** $" + getSalesTotal());
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }

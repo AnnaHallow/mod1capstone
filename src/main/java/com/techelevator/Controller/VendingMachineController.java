@@ -63,7 +63,7 @@ public class VendingMachineController {
         }
 
         System.out.println();
-        System.out.println("**TOTAL SALES**: " + mySalesReport.getSalesTotal());
+        System.out.println("**TOTAL SALES** $" + mySalesReport.getSalesTotal());
 
     }
 
