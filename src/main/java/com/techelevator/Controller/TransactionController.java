@@ -42,28 +42,33 @@ public class TransactionController {
 
     }
 
-    public static void purchaseProduct() throws ProductNotFoundException, ProductSoldOutException {
+    public static void purchaseProduct(){
         Scanner scan = new Scanner(System.in);
         if (vendingBalance.getBalance() == 0) {
             System.out.println("Please submit additional tender.");
         } else {
             System.out.println("Enter item location: ");
             String slotLocation = scan.nextLine();
+            Product newProduct;
 
             try {
-                vendingInventory.searchInventory(slotLocation);
+                newProduct = vendingInventory.searchInventory(slotLocation);
             } catch (ProductNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
-            Product newProduct = vendingInventory.searchInventory(slotLocation);
+            //Product newProduct = vendingInventory.searchInventory(slotLocation);
 
 
             if (vendingBalance.getBalance() < newProduct.getItemPrice()) {
                 System.out.println("Please submit additional tender. Product Price: $" + newProduct.getItemPrice());
                 TransactionController.feedMoney();
             } else {
-                newProduct.removeOneItem();
+                try {
+                    newProduct.removeOneItem();
+                }catch(ProductSoldOutException e){
+                    System.out.println("Item is out of stock");
+                }
             }
         }
 
@@ -72,9 +77,8 @@ public class TransactionController {
     }
 
     public static String noiseMaker(){
-        switch (){
-
-        }
+        //add switch
+        return "";
     }
 
     public static void finishTransaction(){
