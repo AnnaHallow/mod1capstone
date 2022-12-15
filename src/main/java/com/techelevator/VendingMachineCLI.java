@@ -41,7 +41,8 @@ public class VendingMachineCLI {
 				// close program
 				System.exit(0);
 			} else if(choice.equals(MAIN_MENU_SALES_REPORT)){
-				// display Sales report
+				//displays sales report
+				VendingMachineController.displaySalesReport();
 
 			}
 		}

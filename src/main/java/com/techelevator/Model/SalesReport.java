@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SalesReport {
 
-//This method collects the product name and the quantity sold and saves it in a text file
+    //This method collects the product name and the quantity sold and saves it in a text file
     public void writeReport() {
         try {
             PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReport.txt");
@@ -18,17 +18,17 @@ public class SalesReport {
     }
 
     //This method reads the text file and prints it out to the user
-    public String readReport() {
+    public void readReport() {
         File report = new File("src/main/java/com/techelevator/SalesReport.txt");
         try {
             Scanner sales = new Scanner(report);
-            while(sales.hasNextLine()) {
+            while (sales.hasNextLine()) {
                 String nextTransaction = sales.nextLine();
                 System.out.println(nextTransaction);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found.");        }
+            System.out.println("File not found.");
+        }
 
     }
-
 }

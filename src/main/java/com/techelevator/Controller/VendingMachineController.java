@@ -3,6 +3,9 @@ package com.techelevator.Controller;
 import com.techelevator.Model.Inventory;
 import com.techelevator.Model.Product;
 import com.techelevator.Model.Balance;
+import com.techelevator.Model.SalesReport;
+
+import java.io.File;
 
 /**
  * <h1>Controller</h1>
@@ -49,8 +52,16 @@ public class VendingMachineController {
 
 
     public static void displaySalesReport(){
+        final int  STARTING_QUANTITY = 5;
+        for (Product item : vendingInventory.getInventory()){
+            System.out.println(item.getItemName() + " | " + (STARTING_QUANTITY - item.getItemQuantity()));
+        }
+
+        System.out.println();
+        System.out.println("**TOTAL SALES**: " + Balance.getBalanceInstance().getBalance());
 
     }
+
 
 
 
