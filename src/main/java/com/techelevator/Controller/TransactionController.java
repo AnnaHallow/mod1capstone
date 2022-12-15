@@ -69,8 +69,11 @@ public class TransactionController {
 
                         newProduct.removeOneItem();
                         vendingBalance.subtractFromBalance(newProduct.getItemPrice());
+                        System.out.println("Dispensing: " + newProduct.getItemName() + " at $" + newProduct.getItemPrice());
                         //print out sounds
-                        noiseMaker();
+                        System.out.println(noiseMaker(newProduct.getItemType()));
+                        System.out.println("Remaining balance: $" + vendingBalance.getBalance());
+
 
                     }catch(ProductSoldOutException e){
                         System.out.println("Item is out of stock");
@@ -89,17 +92,70 @@ public class TransactionController {
 
     }
 
-    public static String noiseMaker(){
-        //add switch
-        return "";
-    }
+
+        public static String noiseMaker(String type){
+            //String type = newProduct.getType;
+            String sound;
+
+            switch(type){
+                case "Chip": sound = "Crunch Crunch, Yum!";
+                    break;
+                case "Candy": sound = "Munch Munch, Yum!";
+                    break;
+                case "Drink": sound = "Glug Glug, Yum!";
+                    break;
+                case "Gum": sound = "Chew Chew Yum!";
+                    break;
+                default: sound = "What does the fox say?";
+                    break;
+            }
+            return sound;
+        }
+
 
     public static void finishTransaction(){
         System.out.println("Thank you!");
         if (vendingBalance.getBalance() > 0){
+            System.out.println(giveChange(vendingBalance.getBalance()));
             System.out.println("Dispensing Change: $" + vendingBalance.getChange());
+            //System.out.println(giveChange(vendingBalance.getBalance()));
             System.out.println("Have a great day!");
+        }else {
+            System.out.println("Have a nice day!");
         }
+    }
+
+    public static String giveChange(double cash){
+        int quarters =0;
+        int dimes =0;
+        int nickels =0;
+        int pennies=0;
+        int coins = (int) (cash * 100);
+
+        //Used this to test the formula to make change!
+        //System.out.println("COINS: " + coins);
+
+        while(coins > 0){
+            if (coins >= 25){
+                coins -= 25;
+                quarters++;
+            } else if (coins >= 10){
+                coins -= 10;
+                dimes++;
+            } else if (coins >= 5){
+                coins -= 5;
+                nickels++;
+            } else{
+                pennies = coins;
+                coins = 0;
+            }
+        }
+        String change = "Change is: " + quarters + " Quarters, " + dimes + " Dimes, " + nickels + " Nickels, " + pennies + " Pennies." ;
+
+
+        return change;
+
+
     }
 
 
