@@ -1,5 +1,6 @@
 package com.techelevator.ModelTest;
 
+import com.techelevator.Exceptions.ProductSoldOutException;
 import com.techelevator.Model.Product;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,63 +33,70 @@ public class ProductTest {
 
     @Test
     public void getItemsSoldTest(){
-        Assert.assertEquals(0, testing1Product.getItemsSold());
-        Assert.assertEquals(0, testing2Product.getItemsSold());
-        Assert.assertEquals(0, testing3Product.getItemsSold());
-        Assert.assertEquals(0, testing4Product.getItemsSold());
+        try {
+            Assert.assertEquals(0, testing1Product.getItemsSold());
+            Assert.assertEquals(0, testing2Product.getItemsSold());
+            Assert.assertEquals(0, testing3Product.getItemsSold());
+            Assert.assertEquals(0, testing4Product.getItemsSold());
 
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
 
-        testing2Product.removeOneItem();
-        testing2Product.removeOneItem();
+            testing2Product.removeOneItem();
+            testing2Product.removeOneItem();
 
-        testing3Product.removeOneItem();
-        testing3Product.removeOneItem();
-        testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
 
-        testing4Product.removeOneItem();
-        Assert.assertEquals(5, testing1Product.getItemsSold());
-        Assert.assertEquals(2, testing2Product.getItemsSold());
-        Assert.assertEquals(3, testing3Product.getItemsSold());
-        Assert.assertEquals(1, testing4Product.getItemsSold());
+            testing4Product.removeOneItem();
+            Assert.assertEquals(5, testing1Product.getItemsSold());
+            Assert.assertEquals(2, testing2Product.getItemsSold());
+            Assert.assertEquals(3, testing3Product.getItemsSold());
+            Assert.assertEquals(1, testing4Product.getItemsSold());
+        }catch(ProductSoldOutException e){
+            System.out.println(e.getMessage());
+        }
 
 
     }
 
     @Test
     public void isItemOutOfStockTest(){
-        Assert.assertEquals(false, testing1Product.isOutOfStock());
-        Assert.assertEquals(false, testing2Product.isOutOfStock());
-        Assert.assertEquals(false, testing3Product.isOutOfStock());
-        Assert.assertEquals(false, testing4Product.isOutOfStock());
+        try {
+            Assert.assertEquals(false, testing1Product.isOutOfStock());
+            Assert.assertEquals(false, testing2Product.isOutOfStock());
+            Assert.assertEquals(false, testing3Product.isOutOfStock());
+            Assert.assertEquals(false, testing4Product.isOutOfStock());
 
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
-        testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
+            testing1Product.removeOneItem();
 
-        testing2Product.removeOneItem();
-        testing2Product.removeOneItem();
 
-        testing3Product.removeOneItem();
-        testing3Product.removeOneItem();
-        testing3Product.removeOneItem();
-        testing3Product.removeOneItem();
-        testing3Product.removeOneItem();
+            testing2Product.removeOneItem();
+            testing2Product.removeOneItem();
 
-        testing4Product.removeOneItem();
+            testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
+            testing3Product.removeOneItem();
 
-        Assert.assertEquals(true, testing1Product.isOutOfStock());
-        Assert.assertEquals(false, testing2Product.isOutOfStock());
-        Assert.assertEquals(true, testing3Product.isOutOfStock());
-        Assert.assertEquals(false, testing4Product.isOutOfStock());
+            testing4Product.removeOneItem();
+
+            Assert.assertEquals(true, testing1Product.isOutOfStock());
+            Assert.assertEquals(false, testing2Product.isOutOfStock());
+            Assert.assertEquals(true, testing3Product.isOutOfStock());
+            Assert.assertEquals(false, testing4Product.isOutOfStock());
+        }catch(ProductSoldOutException e){
+            System.out.println(e.getMessage());
+        }
 
 
     }

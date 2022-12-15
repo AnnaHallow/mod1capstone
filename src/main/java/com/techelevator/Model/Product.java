@@ -1,6 +1,8 @@
 package com.techelevator.Model;
 
 
+import com.techelevator.Exceptions.ProductSoldOutException;
+
 /**
  * <h1>Product</h1>
  * This creates a blueprint for each product in
@@ -56,11 +58,13 @@ public class Product {
 
     public int getItemsSold(){ return itemsSold;}
 
-    public void removeOneItem() {
+    public void removeOneItem() throws ProductSoldOutException {
 
         if(!isOutOfStock()){
             this.itemQuantity -= 1;
             this.itemsSold += 1;
+        }else{
+            throw new ProductSoldOutException("Product is sold out");
         }
 
     }
