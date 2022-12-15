@@ -30,7 +30,9 @@ public class Balance {
         }
         return firstInstance;
     }
-    public void depositMoney(){
+    public double depositMoney(double cash){
+        cash += balance;
+        return balance;
 
     }
 
@@ -40,12 +42,13 @@ public class Balance {
     }
 
 
-    public void subtractFromBalance(){
-
+    public double subtractFromBalance(double cash){
+        balance -= cash;
+        return balance;
     }
 
-    public void getChange(){
-
+    public double getChange(){
+        return balance;
     }
 
 
