@@ -72,4 +72,9 @@ public class Product {
         }
         return false;
     }
+
+    public String toString(){
+        return this.itemSlot + ", " + this.getItemName() + ", " + this.getItemPrice() + ", " + this.getItemType();
+    }
+
 }
