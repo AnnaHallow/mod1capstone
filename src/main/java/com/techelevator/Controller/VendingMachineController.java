@@ -52,13 +52,18 @@ public class VendingMachineController {
 
 
     public static void displaySalesReport(){
+        // create new salesReport
+        SalesReport mySalesReport = new SalesReport();
+        //loop through map
+            //display data
+        //display totalSales
         final int  STARTING_QUANTITY = 5;
         for (Product item : vendingInventory.getInventory()){
             System.out.println(item.getItemName() + " | " + (STARTING_QUANTITY - item.getItemQuantity()));
         }
 
         System.out.println();
-        System.out.println("**TOTAL SALES**: " + Balance.getBalanceInstance().getBalance());
+        System.out.println("**TOTAL SALES**: " + mySalesReport.getSalesTotal());
 
     }
 

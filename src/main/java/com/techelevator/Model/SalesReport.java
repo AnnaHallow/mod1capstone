@@ -3,14 +3,32 @@ package com.techelevator.Model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class SalesReport {
+    private Map<String, Integer> quantitySold = new HashMap<String, Integer>();
+    private double salesTotal = 0;//
+
+    public SalesReport(){
+        generateSalesReport();
+
+        //write to a file
+
+
+    }
+
+    public double getSalesTotal(){
+        return this.salesTotal;
+    }
 
     //This method collects the product name and the quantity sold and saves it in a text file
     public void writeReport() {
         try {
             PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReport.txt");
+
+            //write data to the file
             transactions.println();
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
@@ -28,6 +46,16 @@ public class SalesReport {
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
+        }
+
+    }
+
+    private void generateSalesReport(){
+        Inventory vendingInventory = Inventory.getInventoryInstance();
+
+        for(Product item: vendingInventory.getInventory()){
+            quantitySold.put(item.getItemName(), item.getItemsSold());
+            this.salesTotal += item.getItemsSold() * item.getItemPrice();
         }
 
     }
