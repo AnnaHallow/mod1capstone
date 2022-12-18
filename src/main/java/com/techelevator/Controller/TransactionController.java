@@ -48,6 +48,7 @@ public class TransactionController {
 
             } else {
                 System.out.println("Invalid selection");
+                stillAdding = false;
             }
 
         }while(stillAdding);
