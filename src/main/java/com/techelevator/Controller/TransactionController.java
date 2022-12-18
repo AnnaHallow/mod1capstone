@@ -23,7 +23,7 @@ public class TransactionController {
 
         do {
             System.out.println("Enter deposit: ");
-            double tempCash = 0.0;
+            int tempCash = 0;
 
 
             try {tempCash += scan.nextInt(); }
