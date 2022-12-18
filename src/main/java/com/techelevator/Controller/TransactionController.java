@@ -4,6 +4,7 @@ import com.techelevator.Exceptions.ProductNotFoundException;
 import com.techelevator.Exceptions.ProductSoldOutException;
 import com.techelevator.Model.Inventory;
 import com.techelevator.Model.Balance;
+import com.techelevator.Model.Log;
 import com.techelevator.Model.Product;
 
 import java.util.Scanner;
@@ -25,12 +26,13 @@ public class TransactionController {
             double tempCash = 0.0;
 
 
-            try {tempCash += scan.nextDouble(); }
+            try {tempCash += scan.nextInt(); }
             catch (Exception e){
                 System.err.println("Must be whole dollars.");
             }
 
             vendingBalance.depositMoney(tempCash);
+            Log.log("FEED MONEY:", tempCash,vendingBalance.getBalance());
 
 
             System.out.println("Add additional tender? Y/N");
@@ -49,6 +51,7 @@ public class TransactionController {
             }
 
         }while(stillAdding);
+
 
     }
 
@@ -77,6 +80,7 @@ public class TransactionController {
                         vendingBalance.subtractFromBalance(newProduct.getItemPrice());
                         System.out.println("Dispensing: " + newProduct.getItemName() + " at $" + newProduct.getItemPrice());
                         //print out sounds
+                        Log.log(newProduct.getItemName()+ " " + newProduct.getItemSlot(), newProduct.getItemPrice(), vendingBalance.getBalance());
                         System.out.println(noiseMaker(newProduct.getItemType()));
                         System.out.println("Remaining balance: $" + vendingBalance.getBalance());
 
@@ -157,7 +161,7 @@ public class TransactionController {
             }
         }
         String change = "Change is: " + quarters + " Quarters, " + dimes + " Dimes, " + nickels + " Nickels, " + pennies + " Pennies." ;
-
+        Log.log("GIVE CHANGE: ", cash, 0);
 
         return change;
 

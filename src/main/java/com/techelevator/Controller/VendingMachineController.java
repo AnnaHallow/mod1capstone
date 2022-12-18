@@ -55,7 +55,7 @@ public class VendingMachineController {
     public static void displaySalesReport(){
         SalesReport mySalesReport = new SalesReport();
         mySalesReport.writeReport();
-        System.out.println("Sales Report printed to SalesReport.txt");
+        System.out.println("Sales Report printed to Sales Folder");
 
 
     }

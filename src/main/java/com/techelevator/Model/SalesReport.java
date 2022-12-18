@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class SalesReport {
@@ -20,7 +22,9 @@ public class SalesReport {
 
     //This method collects the product name and the quantity sold and saves it in a text file
     public void writeReport() {
-        try(PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReport.txt")) {
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        try(PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReports/SalesReport"+ date + time +".txt")) {
             Inventory vendingInventory = Inventory.getInventoryInstance();
 
             transactions.printf("%-25s %-10s", "Product", "Amount Sold");
@@ -48,8 +52,12 @@ public class SalesReport {
 
     //This method reads the text file and prints it out to the user
     //William Haywood says this isn't required.
+    /*
     public void readReport() {
-        File report = new File("src/main/java/com/techelevator/SalesReport.txt");
+
+
+        File report = new File("");
+
         try {
             Scanner sales = new Scanner(report);
             while (sales.hasNextLine()) {
@@ -60,7 +68,8 @@ public class SalesReport {
             System.out.println("File not found.");
         }
 
-    }
 
+    }
+*/
 
 }
