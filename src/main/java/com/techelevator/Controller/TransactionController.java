@@ -23,7 +23,13 @@ public class TransactionController {
         do {
             System.out.println("Enter deposit: ");
             double tempCash = 0.0;
-            tempCash += scan.nextDouble();
+
+
+            try {tempCash += scan.nextDouble(); }
+            catch (Exception e){
+                System.err.println("Must be whole dollars.");
+            }
+
             vendingBalance.depositMoney(tempCash);
 
 
