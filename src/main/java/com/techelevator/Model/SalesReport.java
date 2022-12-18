@@ -7,10 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class SalesReport {
     private Map<String, Integer> quantitySold = new HashMap<String, Integer>();
     private double salesTotal = 0;//
 
+    public Map<String, Integer> getQuantitySold(){return this.quantitySold;}
 
     public double getSalesTotal(){
         return this.salesTotal;
@@ -18,20 +20,26 @@ public class SalesReport {
 
     //This method collects the product name and the quantity sold and saves it in a text file
     public void writeReport() {
-        try {
-            PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReport.txt");
+        try(PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReport.txt")) {
             Inventory vendingInventory = Inventory.getInventoryInstance();
 
+            transactions.printf("%-25s %-10s", "Product", "Amount Sold");
+            transactions.println();
+            transactions.println("-------------------------------------");
             //generate report to write to file
 
-            for(Product item: vendingInventory.getInventory()) {
+            for (Product item : vendingInventory.getInventory()) {
                 quantitySold.put(item.getItemName(), item.getItemsSold());
                 this.salesTotal += item.getItemsSold() * item.getItemPrice();
 
-                //write data to the file
-
-                transactions.println(quantitySold);
             }
+            for (Map.Entry<String, Integer> soldItem : quantitySold.entrySet()) {
+                String name = soldItem.getKey();
+                int sold = soldItem.getValue();
+
+                transactions.printf("%-25s %-1s\n", name, sold);
+            }
+            transactions.println("--------------------------------");
             transactions.println("**SALES TOTAL** $" + getSalesTotal());
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
@@ -39,6 +47,7 @@ public class SalesReport {
     }
 
     //This method reads the text file and prints it out to the user
+    //William Haywood says this isn't required.
     public void readReport() {
         File report = new File("src/main/java/com/techelevator/SalesReport.txt");
         try {

@@ -6,6 +6,7 @@ import com.techelevator.Model.Balance;
 import com.techelevator.Model.SalesReport;
 
 import java.io.File;
+import java.util.Map;
 
 /**
  * <h1>Controller</h1>
@@ -50,20 +51,12 @@ public class VendingMachineController {
     }
 
 
-
+    //adds to file "SalesReport.txt" displaying the product and how many were sold.
     public static void displaySalesReport(){
-        // create new salesReport
         SalesReport mySalesReport = new SalesReport();
-        //loop through map
-            //display data
-        //display totalSales
-        final int  STARTING_QUANTITY = 5;
-        for (Product item : vendingInventory.getInventory()){
-            System.out.println(item.getItemName() + " | " + (STARTING_QUANTITY - item.getItemQuantity()));
-        }
+        mySalesReport.writeReport();
+        System.out.println("Sales Report printed to SalesReport.txt");
 
-        System.out.println();
-        System.out.println("**TOTAL SALES** $" + mySalesReport.getSalesTotal());
 
     }
 
