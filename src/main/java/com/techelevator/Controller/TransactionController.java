@@ -25,7 +25,7 @@ public class TransactionController {
             double tempCash = 0.0;
 
 
-            try {tempCash += scan.nextDouble(); }
+            try {tempCash += scan.nextInt(); }
             catch (Exception e){
                 System.err.println("Must be whole dollars.");
             }
