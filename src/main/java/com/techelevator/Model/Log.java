@@ -18,7 +18,7 @@ public class Log {
         String dateString = date.format(dateFormat);
 
         // Time formater
-        DateTimeFormatter timeFormat = DateTimeFormatter.ISO_TIME;
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hh.mm.ss a");
         String timeString = time.truncatedTo(ChronoUnit.SECONDS).format(timeFormat);
 
         try (FileWriter fWriter = new FileWriter("src/main/java/com/techelevator/Log.txt", true);
