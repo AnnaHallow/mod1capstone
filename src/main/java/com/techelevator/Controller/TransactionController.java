@@ -22,15 +22,27 @@ public class TransactionController {
         boolean stillAdding = true;
 
         do {
-            System.out.println("Enter deposit: ");
-            int tempCash = 0;
+            double tempCash = 0;
+            boolean isDepositValid;
+            do {
+                isDepositValid = true;
+                System.out.println("Enter whole dollar deposit ($0, $1, $5, $10, $20): ");
+                tempCash = 0;
 
 
-            try {tempCash += scan.nextInt(); }
-            catch (Exception e){
-                System.err.println("Must be whole dollars.");
-            }
+                try {
+                    tempCash += Double.parseDouble(scan.next());
+                } catch (Exception e) {
+                    System.err.println("Must be whole dollars.");
+                    isDepositValid = false;
+                }
+                // test if cash is in whole dollar amounts
+                if(!(isWholeDollar(tempCash))){
+                    System.err.println("Must be whole dollars.");
+                    isDepositValid = false;
+                }
 
+            }while(!(isDepositValid));
             vendingBalance.depositMoney(tempCash);
             Log.log("FEED MONEY:", tempCash,vendingBalance.getBalance());
 
@@ -43,11 +55,10 @@ public class TransactionController {
 
             } else if (choice.equalsIgnoreCase("n")) {
                 System.out.println("You have added $" + tempCash);
-                System.out.println("Current balance is: $" + (vendingBalance.getBalance()));
                 stillAdding = false;
 
             } else {
-                System.out.println("Invalid selection");
+                System.err.println("Invalid selection");
                 stillAdding = false;
             }
 
@@ -83,16 +94,16 @@ public class TransactionController {
                         //print out sounds
                         Log.log(newProduct.getItemName()+ " " + newProduct.getItemSlot(), newProduct.getItemPrice(), vendingBalance.getBalance());
                         System.out.println(noiseMaker(newProduct.getItemType()));
-                        System.out.println("Remaining balance: $" + vendingBalance.getBalance());
+                        //System.out.printf("Remaining balance: $%.2f", vendingBalance.getBalance());
 
 
                     }catch(ProductSoldOutException e){
-                        System.out.println("Item is out of stock");
+                        System.err.println("Item is out of stock");
                     }
                 }
             } catch (ProductNotFoundException e) {
                 //throw new RuntimeException(e)
-                System.out.println("Product not found");
+                System.err.println("Product not found");
             }
 
             //Product newProduct = vendingInventory.searchInventory(slotLocation);
@@ -167,6 +178,22 @@ public class TransactionController {
         return change;
 
 
+    }
+
+    private static boolean isWholeDollar(double tempCash){
+        if(tempCash == 0.0){
+            return true;
+        }else if(tempCash == 1.0){
+            return true;
+        }else if(tempCash == 5.0){
+            return true;
+        }else if(tempCash == 10.0){
+            return true;
+        }else if(tempCash == 20.0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

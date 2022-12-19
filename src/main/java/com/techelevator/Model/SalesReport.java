@@ -54,7 +54,7 @@ public class SalesReport {
             }
             transactions.println();
             //transactions.println("--------------------------------");
-            transactions.println("**SALES TOTAL** $" + getSalesTotal());
+            transactions.printf("**SALES TOTAL** $%.2f", getSalesTotal());
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }
