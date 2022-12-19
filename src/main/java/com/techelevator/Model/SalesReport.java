@@ -3,6 +3,8 @@ package com.techelevator.Model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,7 +16,7 @@ public class SalesReport {
     private Map<String, Integer> quantitySold = new HashMap<String, Integer>();
     private double salesTotal = 0;//
 
-    public Map<String, Integer> getQuantitySold(){return this.quantitySold;}
+    //public Map<String, Integer> getQuantitySold(){return this.quantitySold;}
 
     public double getSalesTotal(){
         return this.salesTotal;
@@ -24,12 +26,19 @@ public class SalesReport {
     public void writeReport() {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
-        try(PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReports/SalesReport"+ date + time +".txt")) {
+
+
+        // Time formater
+        DateTimeFormatter timeFormat = DateTimeFormatter.ISO_TIME;
+        String timeString = time.truncatedTo(ChronoUnit.SECONDS).format(timeFormat);
+
+
+        try(PrintWriter transactions = new PrintWriter("src/main/java/com/techelevator/SalesReports/SalesReport"+ date + timeString +".txt")) {
             Inventory vendingInventory = Inventory.getInventoryInstance();
 
-            transactions.printf("%-25s %-10s", "Product", "Amount Sold");
-            transactions.println();
-            transactions.println("-------------------------------------");
+            //transactions.printf("%-25s %-10s", "Product", "Amount Sold");
+            //transactions.println();
+            //transactions.println("-------------------------------------");
             //generate report to write to file
 
             for (Product item : vendingInventory.getInventory()) {
@@ -40,10 +49,11 @@ public class SalesReport {
             for (Map.Entry<String, Integer> soldItem : quantitySold.entrySet()) {
                 String name = soldItem.getKey();
                 int sold = soldItem.getValue();
-
-                transactions.printf("%-25s %-1s\n", name, sold);
+                transactions.println(name + "|" + sold);
+                //transactions.printf("%-25s %-1s\n", name, sold);
             }
-            transactions.println("--------------------------------");
+            transactions.println();
+            //transactions.println("--------------------------------");
             transactions.println("**SALES TOTAL** $" + getSalesTotal());
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");

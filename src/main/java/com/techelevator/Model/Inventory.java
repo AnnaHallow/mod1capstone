@@ -13,7 +13,7 @@ import java.util.Scanner;
  * This class reads each line from the (vendingmachine.csv) file
  * and saves each item as a Product datatype in a ArrayList.You can access
  * this ArrayList by calling the getInventory() method. The class
- * is a using the singleton pattern so you can only one instance of the
+ * is using the singleton pattern so you can only have one instance of the
  * class at a time.
  * <p>
  * <b>Note:</b> to create an instance of this class write

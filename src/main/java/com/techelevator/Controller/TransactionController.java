@@ -162,7 +162,7 @@ public class TransactionController {
             }
         }
         String change = "Change is: " + quarters + " Quarters, " + dimes + " Dimes, " + nickels + " Nickels, " + pennies + " Pennies." ;
-        Log.log("GIVE CHANGE: ", cash, 0);
+        Log.log("GIVE CHANGE:", cash, 0);
 
         return change;
 
