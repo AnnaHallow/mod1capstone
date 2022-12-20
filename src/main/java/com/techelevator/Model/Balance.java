@@ -31,19 +31,20 @@ public class Balance {
         return firstInstance;
     }
     public void depositMoney(double cash){
-
+        //deposits money
         this.balance += cash;
 
     }
 
     public double getBalance(){
-
+        //calls balance
         return this.balance;
     }
 
 
     public void subtractFromBalance(double cash){
         this.balance -= cash;
+        //subtract from balance
 
     }
 
@@ -51,6 +52,7 @@ public class Balance {
         double changeBalance = this.balance;
         this.balance = 0;
         return changeBalance;
+        //set change amount and reset balance to zero
     }
 
 

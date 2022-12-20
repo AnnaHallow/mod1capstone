@@ -51,18 +51,21 @@ public class TransactionController {
             TransactionController.displayCurrentBalance();
             String choice = scan.next();
             if (choice.equalsIgnoreCase("y")) {
+                //this is blank on purpose! It keeps the Y input as valid, while continuing the loop.
 
 
             } else if (choice.equalsIgnoreCase("n")) {
                 System.out.println("You have added $" + tempCash);
                 stillAdding = false;
-
+                //Stop adding tender and return to purchase menu
             } else {
                 System.err.println("Invalid selection");
                 stillAdding = false;
+                //stops the loop and returns to previous menu
             }
 
         }while(stillAdding);
+            //continues the loop
 
 
     }
@@ -74,11 +77,11 @@ public class TransactionController {
         } else {
             System.out.println("Enter item location: ");
             String slotLocation = scan.nextLine();
-
+            //holds current selection
 
             try {
                 Product newProduct = vendingInventory.searchInventory(slotLocation);
-
+                //
 
 
                 if (vendingBalance.getBalance() < newProduct.getItemPrice()) {
@@ -88,10 +91,13 @@ public class TransactionController {
                     try {
 
                         newProduct.removeOneItem();
+                        //removes item from inventory
                         vendingBalance.subtractFromBalance(newProduct.getItemPrice());
+                        //subtracts balance from total balance
                         System.out.println("Dispensing: " + newProduct.getItemName() + " at $" + newProduct.getItemPrice());
-                        //print out sounds
+                        //send to log
                         Log.log(newProduct.getItemName()+ " " + newProduct.getItemSlot(), newProduct.getItemPrice(), vendingBalance.getBalance());
+                        //print out sounds
                         System.out.println(noiseMaker(newProduct.getItemType()));
 
 
@@ -114,7 +120,7 @@ public class TransactionController {
 
 
         public static String noiseMaker(String type){
-
+        //let's make some noise!
             String sound;
 
             switch(type){
@@ -128,6 +134,7 @@ public class TransactionController {
                     break;
                 default: sound = "What does the fox say?";
                     break;
+                    //it should never get here, but it's a fun easter egg!
             }
             return sound;
         }
@@ -141,6 +148,7 @@ public class TransactionController {
             System.out.println("Have a great day!");
         }else {
             System.out.println("Have a nice day!");
+            //only runs if there is a $0 balance when exiting
         }
     }
 
@@ -169,8 +177,10 @@ public class TransactionController {
                 coins = 0;
             }
         }
+        //divide out what change is given
         String change = "Change is: " + quarters + " Quarters, " + dimes + " Dimes, " + nickels + " Nickels, " + pennies + " Pennies." ;
         Log.log("GIVE CHANGE:", cash, 0);
+        //send to log
 
         return change;
 
@@ -178,6 +188,7 @@ public class TransactionController {
     }
 
     private static boolean isWholeDollar(double tempCash){
+        //checks to make sure tender is whole dollars
         if(tempCash == 0.0){
             return true;
         }else if(tempCash == 1.0){
