@@ -61,7 +61,6 @@ public class SalesReport {
     }
 
     //This method reads the text file and prints it out to the user
-    //William Haywood says this isn't required.
     /*
     public void readReport() {
 
