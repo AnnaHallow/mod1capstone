@@ -24,7 +24,8 @@ public class Log {
         try (FileWriter fWriter = new FileWriter("src/main/java/com/techelevator/Log.txt", true);
              PrintWriter outputWriter = new PrintWriter(fWriter)){
             //outputWriter.println(date + " " + time + " " + operation + " $" + amount + " -> Total: $" + balance);
-            outputWriter.println(dateString + " " + timeString + " " + operation + " $" + amount + " $" + balance);
+            //outputWriter.println(dateString + " " + timeString + " " + operation + " $" + amount + " $" + balance);
+            outputWriter.printf("%s %s %s $%.2f $%.2f\n", dateString, timeString, operation, amount, balance);
         } catch (Exception e) {
             System.out.println("An error has occurred");
         }

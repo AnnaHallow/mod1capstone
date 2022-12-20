@@ -79,7 +79,6 @@ public class TransactionController {
             try {
                 Product newProduct = vendingInventory.searchInventory(slotLocation);
 
-                //Product newProduct = vendingInventory.searchInventory(slotLocation);
 
 
                 if (vendingBalance.getBalance() < newProduct.getItemPrice()) {
@@ -94,7 +93,7 @@ public class TransactionController {
                         //print out sounds
                         Log.log(newProduct.getItemName()+ " " + newProduct.getItemSlot(), newProduct.getItemPrice(), vendingBalance.getBalance());
                         System.out.println(noiseMaker(newProduct.getItemType()));
-                        //System.out.printf("Remaining balance: $%.2f", vendingBalance.getBalance());
+
 
 
                     }catch(ProductSoldOutException e){
@@ -102,11 +101,10 @@ public class TransactionController {
                     }
                 }
             } catch (ProductNotFoundException e) {
-                //throw new RuntimeException(e)
                 System.err.println("Product not found");
             }
 
-            //Product newProduct = vendingInventory.searchInventory(slotLocation);
+
 
         }
 
@@ -116,7 +114,7 @@ public class TransactionController {
 
 
         public static String noiseMaker(String type){
-            //String type = newProduct.getType;
+
             String sound;
 
             switch(type){
@@ -139,8 +137,7 @@ public class TransactionController {
         System.out.println("Thank you!");
         if (vendingBalance.getBalance() > 0){
             System.out.println(giveChange(vendingBalance.getBalance()));
-            System.out.println("Dispensing Change: $" + vendingBalance.getChange());
-            //System.out.println(giveChange(vendingBalance.getBalance()));
+            System.out.printf("Dispensing Change: $%.2f\n", vendingBalance.getChange());
             System.out.println("Have a great day!");
         }else {
             System.out.println("Have a nice day!");

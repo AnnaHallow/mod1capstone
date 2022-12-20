@@ -51,7 +51,7 @@ public class VendingMachineController {
     }
 
 
-    //adds to file "SalesReport.txt" displaying the product and how many were sold.
+    //adds to file "SalesReport-date-time.txt" displaying the product and how many were sold.
     public static void displaySalesReport(){
         SalesReport mySalesReport = new SalesReport();
         mySalesReport.writeReport();
